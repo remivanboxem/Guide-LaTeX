@@ -1,0 +1,527 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[A4paper
+]{article}
+\title{Guide \LaTeX}
+\author{Rémi VAN BOXEM}
+
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Guide LaTeX},
+  pdfauthor={Rémi VAN BOXEM},
+  hidelinks,
+  pdfcreator={Junia}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Ceci est un guide basique du \LaTeX. Réalisez aisément des documents
+simples et plus propre qu'un logiciel WYSIWYG. Ce guide est fait pour
+être lu à côté d'un environnement \LaTeX opérationnel.
+\end{abstract}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Dans cette section, vous allez pouvoir choisir comment souhaitez-vous
+rendre votre document \LaTeX. Il faut savoir que \LaTeX est un langage
+compilé, donc il faudra au minima un compilateur \LaTeX et un éditeur. Il
+existe toutefois une solution sans aucune installation en utilisant
+simplement votre navigateur.
+
+\hypertarget{en-ligne}{%
+\subsection{En ligne}\label{en-ligne}}
+
+Une solution 100\% en ligne est d'utiliser le site
+\textbf{\href{https://www.overleaf.com/}{Overleaf}}. Vous pouvez vous
+créer gratuitement un compte sur Overleaf. Une fois sur votre espace,
+cliquez sur le bouton vert \textbf{New Project} puis sur \textbf{Blank
+Project}. Choississez un nom pour votre projet et on est parti !
+
+\hypertarget{sur-ma-machine}{%
+\subsection{Sur ma machine}\label{sur-ma-machine}}
+
+Dans cette sous-section, on va vous installer les outils afin de
+compiler localement votre fichier. Référez-vous à la partie
+correspondante à votre système d'exploitation. Dans ce guide (qui est
+prévu pour les ISEN, bonjour à vous), nous allons utiiser Visual Studio
+Code comme éditeur de texte (avec l'excellente extension \LaTeX
+Workshop).
+
+Pour installer Visual Studio Code, référez-vous au guide d'installation
+\href{https://code.visualstudio.com/docs/setup/}{suivant}.
+
+\hypertarget{macos}{%
+\subsubsection{macOS}\label{macos}}
+
+La distribution \LaTeX recommandée est
+\href{https://tug.org/mactex/}{MacTeX}, les détails d'installations sont
+présents sur la page.
+
+\hypertarget{windows}{%
+\subsubsection{Windows}\label{windows}}
+
+La distribution \LaTeX recommandée pour Windows est
+\href{https://miktex.org}{MiKTeX}. Vous devez également installer un
+interpréteur Perl, ma recommendation est
+\href{https://strawberryperl.com}{Strawberry Perl}. C'est un
+environnement perl pour MS Windows contenant tout ce dont vous avez
+besoin pour exécuter et développer des applications perl. Il est conçu
+pour être aussi proche que possible de l'environnement perl des systèmes
+UNIX.
+
+Redémarrez votre ordinateur. Il n'est pas rare que le compilateur \LaTeX
+MiKTeX soit capricieux sur Windows et nécessite le redémarrage de
+l'ordinateur pour être correctement inclus dans le \texttt{PATH}.
+
+Ensuite, lors de votre première compilation, il est possible que votre
+document ne compile juste pas. Soyez à l'affut d'une fenêtre de MiKTeX
+vous demandant d'installer des paquets.
+
+\hypertarget{linux}{%
+\subsubsection{Linux}\label{linux}}
+
+Téléchargez la distribution \textbf{\TeX Live} depuis votre package
+manager :
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Distribution & Nom du paquet \\
+\midrule
+\endhead
+Arch Linux & \texttt{texlive-most} \\
+Debian & \texttt{texlive-full} \\
+Fedora & \texttt{texlive-scheme-medium} \\
+Gentoo & \texttt{app-text/texlive} \\
+NixOS & \texttt{nixpkgs.texlive.combined.scheme-medium} \\
+openSUSE & \texttt{texlive-latex} \\
+Ubuntu & \texttt{texlive-full} \\
+\bottomrule
+\end{longtable}
+
+Une fois \TeX Live d'installé, vous n'avez plus rien à faire. Vous êtes
+opérationnel !
+
+\hypertarget{comme-le-bigorneau-adhuxe8re-au-bitume}{%
+\section{Comme le bigorneau adhère au
+bitume}\label{comme-le-bigorneau-adhuxe8re-au-bitume}}
+
+Un drôle de titre, non ? Le principe de cette partie est de poser les
+premières bases, sans rentrer dans le complexe pour créer un document
+\LaTeX. Vous retrouverez en annexes les différents cas particulier qui
+seront prochainement annoncés.
+
+\hypertarget{votre-premier-document}{%
+\subsection{Votre premier document}\label{votre-premier-document}}
+
+C'est officiel, vous allez écrire votre premier document \LaTeX ! Sortez
+votre meilleure plume, créez un fichier \texttt{main.tex}, ouvrez le
+répertoire le contenant avec Visual Studio Code et écrivez ce qui suit
+et compilez votre document. \emph{(Ces lignes vous seront expliqués
+juste après.)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{\textbackslash{}documentclass}\NormalTok{\{}\ExtensionTok{article}\NormalTok{\}}
+\KeywordTok{\textbackslash{}begin}\NormalTok{\{}\ExtensionTok{document}\NormalTok{\}}
+\NormalTok{Hello World }
+\KeywordTok{\textbackslash{}end}\NormalTok{\{}\ExtensionTok{document}\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Vous devriez voir une belle page blanche avec en haut à gauche ``Hello
+World''. Si c'est le cas félicitations ! Si ce n'est pas le cas,
+référez-vous aux procédures d'installation complètes en annexes.
+
+La ligne \texttt{\textbackslash{}documentclass\{article\}} présise à
+votre compilateur quel type de document vous écrivez actuellement. Il en
+existe un certain nombre de base : \texttt{book} un format adapté à la
+rédaction de gros ouvrages (plusieurs centaines de pages),
+\texttt{report} un format adapté pour des documents de taille modéré et
+la classe \texttt{article} pour des documents extrêmement courts.
+
+Ces trois formats sont les formats natifs que vous risquez de rencontrer
+le plus souvent.
+
+\begin{quote}
+Il existe aussi d'autres formats plus exotiques tel que \texttt{beamer}
+une classe permettant de faire des présentations, \texttt{letter} une
+classe spéciale pour la rédaction de courrier dans les normes
+américaines et \texttt{lettre} la même chose mais avec les standards
+européens établis par l'Observatoire de Genève.
+\end{quote}
+
+Cette ligne doit être impérativement la première de votre fichier
+\texttt{.tex}.
+
+Ensuite vous avez le \texttt{\textbackslash{}begin\{document\}} et le
+\texttt{\textbackslash{}end\{document\}}. En écrivant ceci vous dites
+que tout ce qui est compris entre ces deux balises est dans le document
+(visuellement parlant). On parle d'environnement de document.
+
+Et enfin, notre ``Hello World'' est affiché puisqu'il dans
+l'environnement de document.
+
+\hypertarget{document-oui-mais}{%
+\subsection{Document oui, mais\ldots{}}\label{document-oui-mais}}
+
+\hypertarget{muxe9tadonnuxe9es}{%
+\subsubsection{Métadonnées}\label{muxe9tadonnuxe9es}}
+
+En \LaTeX, vous avez un ensemble de métadonnées simples : le titre,
+l'auteur et la date de rédaction/publication du document. \emph{Selon la
+classe de document choisie, certaines métadonnées supplémentaires
+peuvent être demandées afin de personnaliser au mieux le document.}
+
+Pour définir ces métadonnées, vous pouvez écrire en haut de votre
+document :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\textbackslash{}title}\NormalTok{\{Mon super titre\}}
+\FunctionTok{\textbackslash{}author}\NormalTok{\{C\textquotesingle{}est moi !\}}
+\end{Highlighting}
+\end{Shaded}
+
+Dans votre environnement de document, ajoutez à la première ligne :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\textbackslash{}maketitle}
+\end{Highlighting}
+\end{Shaded}
+
+Compilez votre document et pouf ! Vous avez un joli titre tout propre !
+Mais\ldots{} La date du jour est en anglais ? Corrigons cela !
+
+\hypertarget{localisation-du-document}{%
+\subsubsection{Localisation du
+document}\label{localisation-du-document}}
+
+\LaTeX est prévu pour être utilisé dans le monde entier, c'est pour cela
+qu'on peut préciser la langue et les normes locales qu'on souhaite
+utiliser.
+
+Pour choisir cela, juste après votre définition de classe de document,
+ajoutez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{\textbackslash{}usepackage}\NormalTok{[french]\{}\ExtensionTok{babel}\NormalTok{\} }\CommentTok{\% Normes et traductions}
+\BuiltInTok{\textbackslash{}usepackage}\NormalTok{[T1]\{}\ExtensionTok{fontenc}\NormalTok{\} }\CommentTok{\% Usage des caractères spéciaux}
+\end{Highlighting}
+\end{Shaded}
+
+La première ligne importe le paquet \texttt{babel} et lui donne comme
+option qu'on utilise la langue \textbf{\emph{française}} pour notre
+document. Cela va permettre de traduire ``Table of Contents'' par
+``Table des matières'', ``Abstract'' par ``Résumé''\ldots{} et utiliser
+les normes françaises, notamment pour les dates.
+
+Compilez votre document et découvrez une page de titre bien propre !
+
+\hypertarget{section-sous-section-sous-sous-section}{%
+\subsubsection{Section, sous-section,
+sous-sous-section\ldots{}}\label{section-sous-section-sous-sous-section}}
+
+Vous pouvez hiérachiser vos informations en faisant des parties. Les
+trois les plus fréquentes sont \texttt{\textbackslash{}section}
+\texttt{\textbackslash{}subsection} et
+\texttt{\textbackslash{}subsubsection}. \emph{Il existe également
+\texttt{\textbackslash{}part} \texttt{\textbackslash{}chapter} mais
+nécessite la classe de document \texttt{book}.} Si ce n'est pas
+suffisant vous avez aussi des \texttt{\textbackslash{}paragraph} et des
+\texttt{\textbackslash{}subparagraph}.
+
+Ces instructions possèdent tous la même syntaxe :
+\texttt{\textbackslash{}typedesection\{titre\}}. Pour créer une section
+que j'appelerai Junla, je peux écrire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textbackslash{}section}\NormalTok{\{Junla\}}
+\end{Highlighting}
+\end{Shaded}
+
+Pour faire un parallèle avec de la géométrie : La section correspond à
+un parallélogramme, une sous section correspond à un rectangle ou à un
+losange et une sous sous section peut être notre carré. Pour représenter
+cela en \LaTeX, vous pouvez écrire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textbackslash{}section}\NormalTok{\{Parallélogramme\}}
+\NormalTok{En géométrie, un parallélogramme est un quadrilatère dont les segments diagonaux se coupent en leurs milieux.}
+
+\KeywordTok{\textbackslash{}paragraph}\NormalTok{\{Propriété\}}
+\NormalTok{Tout parallélogramme a un centre de symétrie : le point d\textquotesingle{}intersection de ses diagonales.}
+
+\KeywordTok{\textbackslash{}subsection}\NormalTok{\{Losange\}}
+\NormalTok{Un losange est un parallélogramme ayant au moins deux côtés consécutifs de même longueur. Il est même équilatéral.}
+
+\KeywordTok{\textbackslash{}paragraph}\NormalTok{\{Propriété\} Les diagonales d\textquotesingle{}un losange sont les bissectrices de ses angles.}
+
+\KeywordTok{\textbackslash{}subsection}\NormalTok{\{Rectangle\}}
+\NormalTok{Un rectangle est un parallélogramme ayant au moins un angle droit. Il est même équiangle.}
+
+\KeywordTok{\textbackslash{}subsubsection}\NormalTok{\{Carré\}}
+\NormalTok{Un carré est un losange rectangle.}
+\end{Highlighting}
+\end{Shaded}
+
+Compilez et vous avez trié par niveau les différents types de
+quadrilatères particuliers.
+
+Pour faire un joli sommaire, ajoutez après
+\texttt{\textbackslash{}maketitle} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\textbackslash{}tableofcontents}
+\end{Highlighting}
+\end{Shaded}
+
+En suivant la partie précédente, vous devez arriver à ce qui suit : Code
+final :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{\textbackslash{}documentclass}\NormalTok{\{}\ExtensionTok{article}\NormalTok{\}}
+\BuiltInTok{\textbackslash{}usepackage}\NormalTok{[french]\{}\ExtensionTok{babel}\NormalTok{\}}
+\BuiltInTok{\textbackslash{}usepackage}\NormalTok{[T1]\{}\ExtensionTok{fontenc}\NormalTok{\}}
+
+\FunctionTok{\textbackslash{}title}\NormalTok{\{Mon super titre\}}
+\FunctionTok{\textbackslash{}author}\NormalTok{\{C\textquotesingle{}est moi !\}}
+
+\KeywordTok{\textbackslash{}begin}\NormalTok{\{}\ExtensionTok{document}\NormalTok{\}}
+\FunctionTok{\textbackslash{}maketitle}
+\FunctionTok{\textbackslash{}tableofcontents}
+\NormalTok{Hello World }
+
+\KeywordTok{\textbackslash{}section}\NormalTok{\{Parallélogramme\}}
+\NormalTok{En géométrie, un parallélogramme est un quadrilatère dont les segments diagonaux se coupent en leurs milieux.}
+
+\KeywordTok{\textbackslash{}paragraph}\NormalTok{\{Propriété\}}
+\NormalTok{Tout parallélogramme a un centre de symétrie : le point d\textquotesingle{}intersection de ses diagonales.}
+
+\KeywordTok{\textbackslash{}subsection}\NormalTok{\{Losange\}}
+\NormalTok{Un losange est un parallélogramme ayant au moins deux côtés consécutifs de même longueur. Il est même équilatéral.}
+
+\KeywordTok{\textbackslash{}paragraph}\NormalTok{\{Propriété\} Les diagonales d\textquotesingle{}un losange sont les bissectrices de ses angles.}
+
+\KeywordTok{\textbackslash{}subsection}\NormalTok{\{Rectangle\}}
+\NormalTok{Un rectangle est un parallélogramme ayant au moins un angle droit. Il est même équiangle.}
+
+\KeywordTok{\textbackslash{}subsubsection}\NormalTok{\{Carré\}}
+\NormalTok{Un carré est un losange rectangle.}
+
+\KeywordTok{\textbackslash{}end}\NormalTok{\{}\ExtensionTok{document}\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{du-contenu-contenu-dans-un-beau-cadre}{%
+\subsection{Du contenu contenu dans un beau
+cadre}\label{du-contenu-contenu-dans-un-beau-cadre}}
+
+Maintenant qu'on sait comment bien cadrer son contenu, on va apprendre à
+écrire du contenu en \LaTeX.
+
+\hypertarget{encadre-moi-uxe7a}{%
+\subsubsection{Encadre-moi ça !}\label{encadre-moi-uxe7a}}
+
+Ajouter des images, première chose qu'on fait avec un logiciel de
+traitement de texte. On se bat avec le placement de cette dernière avant
+d'abandonner et de sortir PowerPoint pour faire son CV.
+
+On va voir comment en \LaTeX, on importe une image.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{\textbackslash{}documentclass}\NormalTok{\{}\ExtensionTok{article}\NormalTok{\}}
+\BuiltInTok{\textbackslash{}usepackage}\NormalTok{\{}\ExtensionTok{graphicx}\NormalTok{\}}
+\FunctionTok{\textbackslash{}graphicspath}\NormalTok{\{ \{./images/\} \}}
+
+\KeywordTok{\textbackslash{}begin}\NormalTok{\{}\ExtensionTok{document}\NormalTok{\}}
+\NormalTok{L\textquotesingle{}univers est immense et il semble être homogène, }
+\NormalTok{à grande échelle, partout où nous regardons.}
+
+\BuiltInTok{\textbackslash{}includegraphics}\NormalTok{\{}\ExtensionTok{universe}\NormalTok{\}}
+
+\NormalTok{Voici une photo de la galaxie juste au dessus.}
+\KeywordTok{\textbackslash{}end}\NormalTok{\{}\ExtensionTok{document}\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Et pouf ! L'image est correctement importée ! \LaTeX ne peut pas gérer
+les images par lui-même, nous devons donc utiliser le paquet
+\texttt{graphicx}. Pour l'utiliser, nous incluons la ligne suivante dans
+le préambule : \texttt{\textbackslash{}usepackage\{graphicx\}}.
+
+Il se peut que l'image ne soit pas au bon format. On peut rajouter le
+paramètre \texttt{scale} afin d'affiner la taille de l'image.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{\textbackslash{}includegraphics}\NormalTok{[scale=1.5]\{}\ExtensionTok{universe}\NormalTok{\} }\CommentTok{\% On aggrandit l\textquotesingle{}image}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Note :} L'extension du fichier peut être incluse, mais c'est une
+bonne idée de l'omettre. Si l'extension de fichier est omise, \LaTeX
+recherchera tous les formats supportés.
+
+Plus d'informations sur la gestion du positionnement des images juste
+\href{https://www.overleaf.com/learn/latex/Inserting_Images}{ici}.
+
+\hypertarget{des-uxe9quations}{%
+\subsubsection{Des équations}\label{des-uxe9quations}}
+
+Nous devons écrire une équation mathématiques très importante, mais vous
+n'avez pas envie de scanner un bout de papier car il faut être sérieux !
+\LaTeX à la solution pour vous !
+
+\begin{verbatim}
+$$E=mc^2$$
+\end{verbatim}
+
+\[E=mc²\]
+
+Félicitations, vous venez de prouver la formule d'équivalence entre la
+masse et l'énergie en relativité restreinte ! Voici un cookie.
+
+Cette équation n'a toutefois rien de bien difficile à écrire, un simple
+E = mc² aurait fait l'affaire. Toutefois, lorsqu'on a des équations plus
+complexes comme : \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) ou encore
+\(\lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}\), on est bien content
+d'avoir un logiciel externe pour !
+
+En \LaTeX, pour écrire le paragraph précédent, on a du écrire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Toutefois, lorsqu\textquotesingle{}on a des équations plus complexes  
+comme : }\SpecialStringTok{$}\SpecialCharTok{\textbackslash{}binom}\SpecialStringTok{\{n\}\{k\} = 
+}\SpecialCharTok{\textbackslash{}frac}
+\SpecialStringTok{\{n!\}\{k!(n{-}k)!\}$
+}\NormalTok{ 
+ou encore
+}\SpecialStringTok{$}\SpecialCharTok{\textbackslash{}lim}\SpecialStringTok{\_\{h }
+\SpecialCharTok{\textbackslash{}rightarrow}\SpecialStringTok{ 0 \} }\SpecialCharTok{\textbackslash{}frac}
+\SpecialStringTok{\{f(x+h){-}f(x)\}\{h\}$}\NormalTok{, on est bien content d\textquotesingle{}avoir un logiciel externe pour !}
+\end{Highlighting}
+\end{Shaded}
+
+La différence entre le \texttt{\$math\$} et \texttt{\$\$math\$\$} est
+que le premier va se contenter de se mettre là où vous l'avez placé
+tandis que le double \texttt{\$\$} va centrer l'équation au centre de la
+feuille.
+
+Exemple :
+
+\(\lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}\)
+
+\[\lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialStringTok{$}\SpecialCharTok{\textbackslash{}lim}\SpecialStringTok{\_\{h }\SpecialCharTok{\textbackslash{}rightarrow}\SpecialStringTok{ 0 \} }\SpecialCharTok{\textbackslash{}frac}\SpecialStringTok{\{f(x+h){-}f(x)\}\{h\}$}
+
+\SpecialStringTok{$$}\SpecialCharTok{\textbackslash{}lim}\SpecialStringTok{\_\{h }\SpecialCharTok{\textbackslash{}rightarrow}\SpecialStringTok{ 0 \} }\SpecialCharTok{\textbackslash{}frac}\SpecialStringTok{\{f(x+h){-}f(x)\}\{h\}$$}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
