@@ -21,6 +21,9 @@ version : 0.0.1
   - [Du contenu contenu dans un beau cadre](#du-contenu-contenu-dans-un-beau-cadre)
     - [Encadre-moi ça !](#encadre-moi-ça-)
     - [Des équations](#des-équations)
+- [Complexifions tout ça](#complexifions-tout-ça)
+- [Les documents spéciaux](#les-documents-spéciaux)
+  - [La classe `lettre`](#la-classe-lettre)
 
 # Introduction
 
@@ -52,15 +55,15 @@ Ensuite, lors de votre première compilation, il est possible que votre document
 
 Téléchargez la distribution **TeX Live** depuis votre package manager :
 
-| Distribution | Nom du paquet |
-| -------------|---------------|
-| Arch Linux | `texlive-most` |
-| Debian | `texlive-full`
-| Fedora | `texlive-scheme-medium` |
-| Gentoo | `app-text/texlive` |
-| NixOS | `nixpkgs.texlive.combined.scheme-medium` |
-| openSUSE | `texlive-latex` |
-| Ubuntu | `texlive-full` |
+| Distribution | Nom du paquet                            |
+| ------------ | ---------------------------------------- |
+| Arch Linux   | `texlive-most`                           |
+| Debian       | `texlive-full`                           |
+| Fedora       | `texlive-scheme-medium`                  |
+| Gentoo       | `app-text/texlive`                       |
+| NixOS        | `nixpkgs.texlive.combined.scheme-medium` |
+| openSUSE     | `texlive-latex`                          |
+| Ubuntu       | `texlive-full`                           |
 
 Une fois TeX Live d'installé, vous n'avez plus rien à faire. Vous êtes opérationnel !
 
@@ -269,3 +272,84 @@ $\lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}$
 
 $$\lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}$$
 ```
+
+Ici quelques exemples : 
+
+$$\sum_0^{+ \infin} ax^2 + bx + c$$ 
+
+```latex
+$$\sum_0^{+ \infin} ax^2 + bx + c$$ 
+```
+
+$$\lim_{x \rightarrow - \infin} \frac{1}{n} = -0$$
+
+```latex
+$$\sum_0^{+ \infin} ax^2 + bx + c$$ 
+```
+
+# Complexifions tout ça 
+
+# Les documents spéciaux
+
+## La classe `lettre`
+
+Même si l'heure est aux e-mails, certaines instances préfèrent traiter des courriers. Cela peut-être pour résilier un contrat, faire une lettre de motivation, ou même envoyer un petit mot doux à ses grands parents. On a tous une bonne raison d'écrire des courriers, mais il y a certaines choses qui sont... chiantes, disons-le. Les normes ne sont pas claires pour tout le monde. 
+
+C'est pour cela qu'en 2000, Denis Mégevand de l'Observatoire de Genève décide de formaliser tout cela en un joli [paquet LaTeX](https://www.ctan.org/pkg/lettre). Il est encore maintenu est mis à jour aujourd'hui  
+
+> La classe `lettre` est une adaptation à LATEX 2ε du style `lettre` développé à l’Observatoire sous LATEX 2.09. Celui-ci était lui-même un développement basé sur `letter.sty` permettant de composer avec LATEX des **lettres** ou des **téléfax**, décrits ci-dessous par le terme générique de **message**, dont l’allure correspond mieux aux usages francophones. 
+
+![Exemple de lettre](img/lettre.png)
+
+Voici les champs proposés par le paquet. Ils ne sont pas tous obligatoires, libre à vous de les utiliser.
+
+| Champ | Valeur attendue | Exemple | Alias | Commentaire |
+| ----- | --------------- | ------- | ----- | ----------- |
+| `\adress`| Votre adresse | ```JUNIA\\ 2 Rue Norbert Segard\\ 59014 Lille``` | `\location` | |
+| `\telephone` | Votre numéro de téléphone | `+33 (0)3 28 38 48 58` | | Mettre `\notelephone` sinon |
+| `\fax` | Votre numéro de fax | `+33 (0)3 28 38 48 59` | | Mettre `\nofax` sinon |
+| `\email` | Votre e-mail | `prenom.nom@serveur.suffixe` | |
+| `\lieu`  | Le lieu d'écriture du courrier | ` À Paris` | | Mettre `\nolieu` sinon |
+| `\date`  | La date d'écriture du courrier | `le 28 décembre 2021` | |Cette commande est facultative et est remplacée par défaut par la date du jour dans la langue courante. Pour supprimer la date, mettre `\nodate` |
+| `\Vref` | Précise la référence du destinataire | NOTRE/RÉFÉRENCE | | N'est utilisé qu'en entreprise, pour mettre un numéro de contrat par exemple.
+| `\Nref` | Précise la référence de l’expéditeur | VOTRE/RÉFÉRENCE | | N'est utilisé qu'en entreprise, pour mettre un numéro de contrat par exemple.|
+| `\telex` | indique le numéro de télex de l’expéditeur | 9876543210 | | |
+| `\cpp` | indique le numéro de compte de chèques postaux de l’expéditeur | 0123456789 | | |
+| `\conc` | Précise le sujet du message | Lettre de motivation | | facultatif |
+| `\ps` | permet d’inclure un texte après la signature, sous la forme d’un paragraphe labellé. | `\ps{PS}{J'ai faim}` | |Le label doit être spécifié par l’utilisateur. Facultatif. |
+|`\encl` | spécifie les annexes | `CV\\ RIB` | | Facultatif|
+|`\name` | Nom de l'expéditeur | Moi | | |
+
+Par exemple : 
+```latex
+\documentclass{lettre}
+
+\begin{document}
+\begin{letter}{ JUNIA\\
+                2 Rue Norbert Segard\\ 
+                59014 Lille}
+\telephone{+33 (0)3 28 38 48 58}
+\fax{+33 (0)3 28 38 48 59}
+\email{prenom.nom@serveur.suffixe}
+\lieu{L'Internet}
+\Vref{V/REF}
+\Nref{N/REF}
+\name{Moi}
+\telex{9876543210}
+\cpp{0123456789}
+\conc{Lettre de motivation}
+\opening{Monsieur}
+Je suis motivé pour vous rejoindre, regardez ! Je sais faire du \LaTeX. Sinon je sais aussi jouer au Football. Est-ce que je vous ai déjà parlé de Linux ?
+
+Si vous souhaitez, je peux écrire, rire et chanter. Et je joue Mozart !
+\closing{Veuillez croire en moi svp}
+\encl{CV\\ RIB}
+\signature
+\ps{PS : }{J'ai faim}
+
+\end{letter}    
+\end{document}
+```
+génèrera la lettre suivante : 
+
+![Lettre Exemple](img/lettre_exemple.png)
